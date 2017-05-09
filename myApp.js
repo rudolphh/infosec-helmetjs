@@ -30,7 +30,15 @@ var helmet = require('helmet');
 // people off. e.g. `helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' })`
 
 // Use `helmet.hidePoweredBy()``
+app.use(helmet());
 
+// one way built into express
+// app.disable('x-powered-by');
+
+app.use(helmet.hidePoweredBy());
+
+// can also lie and set the header to something else
+// app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
 
 
 /** 3) Mitigate the risk of clickjacking - `helmet.frameguard()` */
