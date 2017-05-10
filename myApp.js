@@ -53,8 +53,35 @@ app.use(helmet.hidePoweredBy());
 
 // We don't need our app to be framed, so you should use `helmet.frameguard()`
 // passing to it the configuration object `{action: 'deny'}`
+app.use(helmet.frameguard({ action: 'deny' }));
 
+/* You can also use it as a standalone module:
+// Make sure you run "npm install frameguard" to get the Frameguard package.
+var frameguard = require('frameguard')
 
+app.use(frameguard({ action: 'deny' }))
+// Once you’ve required it, you can use it in your apps:
+
+// Don't allow me to be in ANY frames.
+// Sets "X-Frame-Options: DENY".
+app.use(frameguard({ action: 'deny' }))
+
+// Only let me be framed by people of the same origin.
+// Sets "X-Frame-Options: SAMEORIGIN".
+app.use(frameguard({ action: 'sameorigin' }))
+app.use(frameguard())  // defaults to sameorigin
+
+// Allow from a specific host.
+// Sets "X-Frame-Options: ALLOW-FROM http://example.com".
+app.use(frameguard({
+  action: 'allow-from',
+  domain: 'http://example.com'
+}))
+
+// This header is included in the default Helmet bundle and
+// it uses its default value, SAMEORIGIN.
+
+*/
 
 /** 4) Mitigate the risk of XSS - `helmet.xssFilter()` */
 
