@@ -103,7 +103,8 @@ app.use(frameguard({
 // It still has limited support.
 
 // Use `helmet.xssFilter()`
-
+// Sets "X-XSS-Protection: 1; mode=block".
+app.use(helmet.xssFilter());
 
 
 /** 5) Avoid inferring the response MIME type - `helmet.noSniff()` */
