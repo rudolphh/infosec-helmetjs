@@ -231,7 +231,27 @@ app.use(helmet.noCache());
 // in the `"'self'"` keyword, the single quotes are part of the keyword itself,
 // so it needs to be enclosed in **double quotes** to be working.
 
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", 'trusted-cdn.com']
+  }
+}));
 
+/*
+You can also use it as a standalone module:
+
+// Make sure you run "npm install helmet-csp" to get the csp package.
+var csp = require('helmet-csp')
+
+app.use(csp({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", 'trusted-cdn.com']
+  }
+}));
+
+*/
 
 /** TIP: */
 
