@@ -193,7 +193,14 @@ app.use(dnsPrefetchControl());
 // use this option only when there is a real need.
 
 // Use helmet.noCache()
+app.use(helmet.noCache());
 
+// You can also use it as a standalone module:
+
+// Make sure you run "npm install nocache" to get the nocache package.
+// var noCache = require('nocache');
+
+// app.use(noCache());
 
 
 /** 10) Content Security Policy - `helmet.contentSecurityPolicy()` */
