@@ -132,7 +132,7 @@ app.use(helmet.noSniff());
 
 // Use `helmet.ieNoOpen()`
 // Sets "X-Download-Options: noopen".
-app.use(helmet.ieNoOpen())
+app.use(helmet.ieNoOpen());
 
 
 /**  7) Ask browsers to access your site via HTTPS only - `helmet.hsts()` */
@@ -151,7 +151,11 @@ app.use(helmet.ieNoOpen())
 // set the field `force` to `true` in the config object. To not alter hyperdev security
 // policy we will intercept and restore the header, after inspecting it for testing.
 
-var ninetyDaysInMilliseconds = 90*24*60*60*1000;
+var ninetyDaysInMilliseconds = 90*24*60*60*1000;// 7776000
+// Sets "Strict-Transport-Security; includeSubDomains".
+app.use(helmet.hsts({
+  maxAge: ninetyDaysInMilliseconds
+}));
 
 
 //**Note**:
