@@ -174,7 +174,14 @@ app.use(helmet.hsts({
 // DNS prefetching, at the cost of a performance penalty.
 
 // Use `helmet.dnsPrefetchControl()`
+// Sets "X-DNS-Prefetch-Control: off".
+app.use(dnsPrefetchControl());
 
+// Also sets "X-DNS-Prefetch-Control: off".
+// app.use(dnsPrefetchControl({ allow: false }));
+
+// Sets "X-DNS-Prefetch-Control: on".
+// app.use(dnsPrefetchControl({ allow: true }));
 
 
 /** 9) Disable Client-Side Caching - `helmet.noCache()` */
